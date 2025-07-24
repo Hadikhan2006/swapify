@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapify - Pakistan's Premier Item Swapping Platform</title>
+    <meta name="description"
+        content="Join Pakistan's largest sustainable marketplace. Swap, share, and sustain with Swapify  - building a circular economy for a greener future.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">Swapify </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i
+                                class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All
+                                    Categories</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i
+                                        class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i
+                                        class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i
+                                        class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i
+                                class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i
+                                class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i
+                                class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i
+                                class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i
+                                class="fas fa-blog me-1"></i>Blog</a></li>
+                </ul>
+
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle custom-size" type="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My
+                                    Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i
+                                        class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                                        class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section cyber-grid" style="background-image: url('banner.jpg');">
+        <div class="hero-particles" id="heroParticles"></div>
+
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <div class="animate-fade-up">
+                            <span class="badge bg-primary mb-3 animate-glow">🌱 Sustainable Living</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            <span class="animate-glowtext- animate-text-glow">SWAP,</span>
+                            <span class="animate-glowtext- hero-title animate-text-glow">SHARE,</span>
+                            <span class="animate-glowtext- hero-title animate-text-glow">SUSTAIN</span>
+                        </h1>
+
+
+                        <p class="hero-subtitle animate-slide-left">
+                            Pakistan's first circular economy platform. Turn your unused items into treasures for others
+                            while building a sustainable future together.
+                        </p>
+
+                        <div class="hero-stats mb-4 stagger-animation">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="stat-card enhanced-card">
+                                        <div class="stat-number animate-text-glow" data-count="15000">0</div>
+                                        <div class="stat-label">Items Swapped</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-card enhanced-card">
+                                        <div class="stat-number animate-text-glow" data-count="8500">0</div>
+                                        <div class="stat-label">Happy Users</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-card enhanced-card">
+                                        <div class="stat-number animate-text-glow" data-count="75">0</div>
+                                        <div class="stat-label">Cities</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-buttons animate-bounce-in">
+                            <a href="marketplace.html" class="btn btn-primary btn-lg me-3 animate-glow">
+                                <i class="fas fa-rocket me-2"></i>Start Swapping Now
+                            </a>
+                            <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#demoModal">
+                                <i class="fas fa-play me-2"></i>Watch Demo
+                            </button>
+                        </div>
+
+                        <div class="hero-features mt-4 animate-slide-up">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <i class="fas fa-shield-alt text-success me-2"></i>
+                                        <span class="stay-white">100% Secure Swaps</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <i class="fas fa-leaf text-success me-2"></i>
+                                        <span class="stay-white">Eco-Friendly Platform</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hero-visual animate-float">
+                        <div id="heroItemCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#heroItemCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#heroItemCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#heroItemCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#heroItemCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <!-- Carousel Item 1 -->
+                                <div class="carousel-item active">
+                                    <div class="phone-mockup enhanced-card animate-glow holographic">
+                                        <div class="phone-screen">
+                                            <div class="app-interface">
+                                                <div class="app-header">
+                                                    <div class="search-bar glass-effect">
+                                                        <i class="fas fa-search text-primary"></i>
+                                                        <span class="ms-2">Search amazing items...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-content mt-3">
+                                                    <div class="item-preview enhanced-card animate-slide-up">
+                                                        <div class="item-image-preview">
+                                                            <img src="Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg"
+                                                                alt="iPhone 14 Pro" class="img-fluid">
+                                                        </div>
+                                                        <br>
+                                                        <div class="item-info">
+                                                            <h6 class="mb-1">iPhone 14 Pro Max</h6>
+                                                            <p class="small mb-1">Excellent condition</p>
+                                                            <span class="badge bg-success">Ready to Swap</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Carousel Item 2 -->
+                                <div class="carousel-item">
+                                    <div class="phone-mockup enhanced-card animate-glow holographic">
+                                        <div class="phone-screen">
+                                            <div class="app-interface">
+                                                <div class="app-header">
+                                                    <div class="search-bar glass-effect">
+                                                        <i class="fas fa-search text-primary"></i>
+                                                        <span class="ms-2">Search amazing items...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-content mt-3">
+                                                    <div class="item-preview enhanced-card animate-slide-up">
+                                                        <div class="item-image-preview">
+                                                            <img src="macbook-pro.jpg"
+                                                                alt="MacBook Pro" class="img-fluid">
+                                                        </div>
+                                                        <br>
+                                                        <div class="item-info">
+                                                            <h6 class="mb-1">MacBook Pro</h6>
+                                                            <p class="small mb-1">Like new, original packaging</p>
+                                                            <span class="badge bg-info">Featured</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Carousel Item 3 -->
+                                <div class="carousel-item">
+                                    <div class="phone-mockup enhanced-card animate-glow holographic">
+                                        <div class="phone-screen">
+                                            <div class="app-interface">
+                                                <div class="app-header">
+                                                    <div class="search-bar glass-effect">
+                                                        <i class="fas fa-search text-primary"></i>
+                                                        <span class="ms-2">Search amazing items...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-content mt-3">
+                                                    <div class="item-preview enhanced-card animate-slide-up">
+                                                        <div class="item-image-preview">
+                                                            <img src="canon-eos-r5.jpg"
+                                                                alt="Canon EOS R5" class="img-fluid">
+                                                        </div>
+                                                        <br>
+                                                        <div class="item-info">
+                                                            <h6 class="mb-1">Canon EOS R5</h6>
+                                                            <p class="small mb-1">Professional camera</p>
+                                                            <span class="badge bg-warning">New Listing</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Carousel Item 4 -->
+                                <div class="carousel-item">
+                                    <div class="phone-mockup enhanced-card animate-glow holographic">
+                                        <div class="phone-screen">
+                                            <div class="app-interface">
+                                                <div class="app-header">
+                                                    <div class="search-bar glass-effect">
+                                                        <i class="fas fa-search text-primary"></i>
+                                                        <span class="ms-2">Search amazing items...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-content mt-3">
+                                                    <div class="item-preview enhanced-card animate-slide-up">
+                                                        <div class="item-image-preview">
+                                                            <img src="gaming-laptop.jpg"
+                                                                alt="Gaming Laptop" class="img-fluid">
+                                                        </div>
+                                                        <br>
+                                                        <div class="item-info">
+                                                            <h6 class="mb-1">Gaming Laptop</h6>
+                                                            <p class="small mb-1">High performance</p>
+                                                            <span class="badge bg-danger">Hot Deal</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#heroItemCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#heroItemCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="quick-actions py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="quick-actions-container enhanced-card neon-border animate-slide-up">
+                        <div class="row g-0">
+                            <div class="col-md-3">
+                                <div class="quick-action-item text-center p-3">
+                                    <i class="fas fa-search fa-2x text-primary mb-2"></i>
+                                    <h6>Find Items</h6>
+                                    <p class="small mb-0">Browse thousands of items</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quick-action-item text-center p-3">
+                                    <i class="fas fa-plus-circle fa-2x text-success mb-2"></i>
+                                    <h6>List Items</h6>
+                                    <p class="small mb-0">Add your items to swap</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quick-action-item text-center p-3">
+                                    <i class="fas fa-comments fa-2x text-info mb-2"></i>
+                                    <h6>Chat & Connect</h6>
+                                    <p class="small mb-0">Message other swappers</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quick-action-item text-center p-3">
+                                    <i class="fas fa-handshake fa-2x text-warning mb-2"></i>
+                                    <h6>Complete Swap</h6>
+                                    <p class="small mb-0">Meet and exchange items</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title animate-text-glow">Popular Categories</h2>
+                <p class="section-subtitle">Discover amazing items across various categories</p>
+            </div>
+
+            <div class="row stagger-animation">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="category-card enhanced-card animate-scale-in"
+                        onclick="window.location.href='marketplace.html?category=electronics'">
+                        <div class="category-icon animate-glow">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h5>Electronics</h5>
+                        <p>Phones, Laptops, Gadgets</p>
+                        <div class="category-stats">
+                            <span class="badge bg-primary">2,450 items</span>
+                            <span class="badge bg-success ms-2">+15% this week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="category-card enhanced-card animate-scale-in"
+                        onclick="window.location.href='marketplace.html?category=books'">
+                        <div class="category-icon animate-glow">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h5>Books</h5>
+                        <p>Textbooks, Novels, Comics</p>
+                        <div class="category-stats">
+                            <span class="badge bg-primary">1,890 items</span>
+                            <span class="badge bg-success ms-2">+8% this week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="category-card enhanced-card animate-scale-in"
+                        onclick="window.location.href='marketplace.html?category=fashion'">
+                        <div class="category-icon animate-glow">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h5>Fashion</h5>
+                        <p>Clothes, Shoes, Accessories</p>
+                        <div class="category-stats">
+                            <span class="badge bg-primary">3,200 items</span>
+                            <span class="badge bg-success ms-2">+22% this week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="category-card enhanced-card animate-scale-in"
+                        onclick="window.location.href='marketplace.html?category=furniture'">
+                        <div class="category-icon animate-glow">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h5>Furniture</h5>
+                        <p>Tables, Chairs, Decor</p>
+                        <div class="category-stats">
+                            <span class="badge bg-primary">980 items</span>
+                            <span class="badge bg-success ms-2">+12% this week</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Items Section -->
+    <section id="marketplace" class="featured-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title animate-text-glow">Trending Swaps</h2>
+                <p class="section-subtitle">Hot items that everyone wants to swap</p>
+            </div>
+
+            <div class="row stagger-animation" id="featuredItems">
+                <!-- Items will be loaded dynamically -->
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="marketplace.html" class="btn btn-lg animate-glow theme-aware-text-2">
+                    <i class="fas fa-eye me-2"></i>Explore All Items
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section py-5" style="background-image: url(/);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="impact-content animate-slide-left">
+                        <h2 class="animate-text-glow mb-4">Your Environmental Impact</h2>
+                        <p class="lead mb-4">Every swap makes a difference. Join thousands of Pakistanis building a
+                            sustainable future.</p>
+
+                        <div class="impact-stats stagger-animation">
+                            <div class="impact-item enhanced-card mb-3">
+                                <div class="impact-icon animate-glow">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="impact-info">
+                                    <h4>75 tons</h4>
+                                    <p>Waste Reduced</p>
+                                    <small class="text-success">+25% this month</small>
+                                </div>
+                            </div>
+
+                            <div class="impact-item enhanced-card mb-3">
+                                <div class="impact-icon animate-glow">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="impact-info">
+                                    <h4>2.5M liters</h4>
+                                    <p>Water Saved</p>
+                                    <small class="text-success">+18% this month</small>
+                                </div>
+                            </div>
+
+                            <div class="impact-item enhanced-card">
+                                <div class="impact-icon animate-glow">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="impact-info">
+                                    <h4>850 trees</h4>
+                                    <p>Equivalent Saved</p>
+                                    <small class="text-success">+30% this month</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="impact-visual animate-float">
+                        <div class="eco-dashboard enhanced-card animate-glow">
+                            <div class="dashboard-header text-center mb-4">
+                                <h5>Pakistan's Eco Progress</h5>
+                            </div>
+                            <div class="progress-rings">
+                                <div class="progress-ring">
+                                    <svg width="200" height="200">
+                                        <circle cx="100" cy="100" r="80" fill="none" stroke="var(--border-color)"
+                                            stroke-width="10" />
+                                        <circle cx="100" cy="100" r="80" fill="none" stroke="var(--success-color)"
+                                            stroke-width="10" stroke-dasharray="502" stroke-dashoffset="125"
+                                            class="animate-glow" />
+                                    </svg>
+                                    <div class="progress-center">
+                                        <i class="fas fa-globe-asia fa-3x text-success animate-pulse"></i>
+                                        <span class="animate-text-glow">75%</span>
+                                        <p>Sustainability Goal</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title animate-text-glow">Join Our Community</h2>
+                <p class="section-subtitle">Connect with like-minded people across Pakistan</p>
+            </div>
+
+            <div class="row stagger-animation">
+                <div class="col-lg-4 mb-4">
+                    <div class="community-card enhanced-card text-center">
+                        <div class="community-icon animate-glow mb-3">
+                            <i class="fas fa-users fa-3x"></i>
+                        </div>
+                        <h5>Local Groups</h5>
+                        <p>Join city-specific groups and meet nearby swappers</p>
+                        <a href="community.html" class="btn btn-outline-primary theme-aware-text"
+                            style="transform: translateY(0px);">Join Groups</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <div class="community-card enhanced-card text-center">
+                        <div class="community-icon animate-glow mb-3">
+                            <i class="fas fa-calendar-alt fa-3x"></i>
+                        </div>
+                        <h5>Swap Events</h5>
+                        <p>Attend local swap meets and community events</p>
+                        <a href="events.html" class="btn btn-outline-primary theme-aware-text"
+                            style="transform: translateY(0px);">View Events</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <div class="community-card enhanced-card text-center">
+                        <div class="community-icon animate-glow mb-3">
+                            <i class="fas fa-trophy fa-3x"></i>
+                        </div>
+                        <h5>Leaderboards</h5>
+                        <p>Compete with others and earn eco-warrior badges</p>
+                        <a href="leaderboard.html" class="btn btn-outline-primary theme-aware-text"
+                            style="transform: translateY(0px);">View Rankings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="newsletter-content animate-bounce-in">
+                        <h2 class="text-white mb-3 animate-text-glow">Stay in the Loop</h2>
+                        <p class="text-white mb-4">Get weekly updates on new items, eco-tips, and community events</p>
+                        <div class="newsletter-form">
+                            <div class="input-group input-group-lg">
+                                <input type="email" class="form-control" placeholder="Enter your email address">
+                                <button class="btn btn-light" type="button">
+                                    <i class="fas fa-paper-plane me-2"></i>Subscribe
+                                </button>
+                            </div>
+                        </div>
+                        <small class="text-white-50 mt-2 d-block">Join 10,000+ eco-warriors already subscribed</small>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand animate-slide-up">
+                        <i class="fas fa-recycle text-primary"></i>
+                        <span class="ms-2">Swapify </span>
+                    </div>
+                    <p class="mt-3">Building Pakistan's sustainable future through circular economy and community-driven
+                        swapping.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Platform</h6>
+                    <ul class="footer-links">
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="rewards.html">Rewards</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="safety.html">Safety Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="guidelines.html">Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright">&copy; 2025 Swapify . All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="made-with">Made with <i class="fas fa-heart text-danger animate-pulse"></i> in Pakistan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Modals -->
+    <div class="modal fade" id="demoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Swapify Demo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="demo-video">
+                        <i class="fas fa-play-circle fa-5x text-primary mb-3 animate-pulse"></i>
+                        <h4>See Swapify in Action</h4>
+                        <p>Watch how easy it is to swap items and build a sustainable future</p>
+                        <button class="btn btn-primary btn-lg animate-glow">
+                            <i class="fas fa-play me-2"></i>Play Demo Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome Back!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                        <div class="text-center">
+                            <a href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Image Preview Modal -->
+    <div class="modal fade" id="itemImagePreviewModal" tabindex="-1" aria-labelledby="itemImagePreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemImagePreviewModalLabel">Item Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="previewImage" src="/placeholder.svg" alt="Item Preview" class="img-fluid rounded-3" style="max-height: 70vh; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

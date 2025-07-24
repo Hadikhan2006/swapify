@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Swapify </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-hero {
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+        }
+
+        .faq-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .faq-hero .container {
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .faq-hero .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        .faq-hero .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .accordion-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary-color);
+        }
+
+        .accordion-button {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--primary-color);
+            color: white;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+            border-color: var(--primary-color);
+        }
+
+        .accordion-body {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">Swapify </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i
+                                class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All
+                                    Categories</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i
+                                        class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i
+                                        class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i
+                                        class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i
+                                class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i
+                                class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i
+                                class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i
+                                class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i
+                                class="fas fa-blog me-1"></i>Blog</a></li>
+                </ul>
+
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle custom-size" type="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My
+                                    Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i
+                                        class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                                        class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Hero -->
+    <section class="faq-hero hero-section">
+        <div class="container">
+            <h1 class="hero-title animate-text-glow">Frequently Asked Questions</h1>
+            <p class="hero-subtitle animate-fade-up">Find answers to common questions about Swapify </p>
+        </div>
+    </section>
+
+    <!-- FAQ Content Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="animate-text-glow">General Questions</h2>
+                <p class="lead text-muted">Everything you need to know to get started</p>
+            </div>
+            <div class="accordion" id="faqAccordionGeneral">
+                <div class="accordion-item animate-fade-up">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            What is Swapify ?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#faqAccordionGeneral">
+                        <div class="accordion-body">
+                            Swapify is Pakistan's premier online platform dedicated to item swapping. We connect
+                            individuals who want to exchange their unused or pre-loved items for something they need,
+                            promoting a sustainable and circular economy.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.1s;">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How does swapping work?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#faqAccordionGeneral">
+                        <div class="accordion-body">
+                            It's simple! You list an item you want to swap, describing what you're looking for in
+                            return. Other users can then browse your item and propose a swap with their own items. Once
+                            both parties agree, you arrange a meeting to exchange items.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.2s;">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Is Swapify free to use?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#faqAccordionGeneral">
+                        <div class="accordion-body">
+                            Yes, listing items and proposing swaps on Swapify is completely free! We aim to make
+                            sustainable living accessible to everyone.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.3s;">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            What kind of items can I swap?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#faqAccordionGeneral">
+                        <div class="accordion-body">
+                            You can swap a wide variety of items, including electronics, books, fashion, furniture,
+                            sports equipment, toys, home & garden items, and more. Please refer to our <a
+                                href="guidelines.html" class="text-primary">Community Guidelines</a> for a list of
+                            prohibited items.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center my-5">
+                <h2 class="animate-text-glow">Account & Safety</h2>
+                <p class="lead text-muted">Ensuring a secure and trustworthy swapping experience</p>
+            </div>
+            <div class="accordion" id="faqAccordionSafety">
+                <div class="accordion-item animate-fade-up">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            How do I create an account?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#faqAccordionSafety">
+                        <div class="accordion-body">
+                            Click on the "Account" dropdown in the navigation bar and select "Sign Up" or "My Profile".
+                            You'll be guided through a quick registration process.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.1s;">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            What are Eco Points and how do I earn them?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                        data-bs-parent="#faqAccordionSafety">
+                        <div class="accordion-body">
+                            Eco Points are our reward system for sustainable actions. You earn points by completing
+                            swaps, listing new items, referring friends, and more. You can redeem them for exclusive
+                            discounts and rewards. Visit our <a href="rewards.html" class="text-primary">Rewards
+                                page</a> for details.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.2s;">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            How do you ensure safety and trust?
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                        data-bs-parent="#faqAccordionSafety">
+                        <div class="accordion-body">
+                            We prioritize user safety. We encourage users to meet in public places, verify item
+                            conditions, and use our in-app chat for communication. We also have a reporting system for
+                            suspicious activity and clear <a href="safety.html" class="text-primary">Safety
+                                Guidelines</a>.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item animate-fade-up" style="animation-delay: 0.3s;">
+                    <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            What if I have an issue with a swap?
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                        data-bs-parent="#faqAccordionSafety">
+                        <div class="accordion-body">
+                            If you encounter any issues, please contact our support team immediately via the <a
+                                href="contact.html" class="text-primary">Contact Us</a> page or by reporting the
+                            item/user. We will investigate and assist you.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="lead text-muted">Still have questions? Don't hesitate to reach out!</p>
+                <a href="contact.html" class="btn btn-primary btn-lg animate-glow">
+                    <i class="fas fa-envelope me-2"></i>Contact Support
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand animate-slide-up">
+                        <i class="fas fa-recycle text-primary"></i>
+                        <span class="ms-2">Swapify </span>
+                    </div>
+                    <p class="mt-3">Building Pakistan's sustainable future through circular economy and community-driven
+                        swapping.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Platform</h6>
+                    <ul class="footer-links">
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="rewards.html">Rewards</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="safety.html">Safety Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="guidelines.html">Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright">&copy; 2025 Swapify . All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="made-with">Made with <i class="fas fa-heart text-danger animate-pulse"></i> in Pakistan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

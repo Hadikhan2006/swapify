@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Swapify </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .careers-hero {
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+        }
+
+        .careers-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .careers-hero .container {
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .careers-hero .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        .careers-hero .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .job-opening-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .job-opening-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--accent-color);
+        }
+
+        .job-opening-card h5 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-opening-card .job-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .job-opening-card .job-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .job-opening-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .job-opening-card .btn {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">Swapify </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i
+                                class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All
+                                    Categories</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i
+                                        class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i
+                                        class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i
+                                        class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i
+                                class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i
+                                class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i
+                                class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i
+                                class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle custom-size" type="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My
+                                    Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i
+                                        class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                                        class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Careers Hero -->
+    <section class="careers-hero hero-section">
+        <div class="container">
+            <h1 class="hero-title animate-text-glow">Join Our Team</h1>
+            <p class="hero-subtitle animate-fade-up">Be a part of building Pakistan's sustainable future</p>
+        </div>
+    </section>
+
+    <!-- Why Work With Us Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="animate-text-glow">Why Work at Swapify ?</h2>
+                <p class="lead text-muted">Innovate, impact, and grow with a purpose-driven team</p>
+            </div>
+            <div class="row text-center stagger-animation">
+                <div class="col-md-4 mb-4">
+                    <div class="enhanced-card p-4">
+                        <div class="icon-circle animate-float mb-3">
+                            <i class="fas fa-leaf fa-3x text-success"></i>
+                        </div>
+                        <h4>Sustainable Impact</h4>
+                        <p class="text-muted">Contribute directly to environmental sustainability and circular economy
+                            in Pakistan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="enhanced-card p-4">
+                        <div class="icon-circle animate-float mb-3" style="animation-delay: 0.2s;">
+                            <i class="fas fa-lightbulb fa-3x text-warning"></i>
+                        </div>
+                        <h4>Innovation & Growth</h4>
+                        <p class="text-muted">Work on cutting-edge technology and grow your skills in a dynamic
+                            environment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="enhanced-card p-4">
+                        <div class="icon-circle animate-float mb-3" style="animation-delay: 0.4s;">
+                            <i class="fas fa-users fa-3x text-info"></i>
+                        </div>
+                        <h4>Vibrant Culture</h4>
+                        <p class="text-muted">Join a collaborative, inclusive, and passionate team dedicated to making a
+                            difference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Openings Section -->
+    <section class="py-5 bg-secondary">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="animate-text-glow">Current Job Openings</h2>
+                <p class="lead text-muted">Explore opportunities to join our growing team</p>
+            </div>
+            <div class="row stagger-animation">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>Senior Full-Stack Developer</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Karachi, Pakistan
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            We're looking for an experienced Full-Stack Developer to build scalable web applications and
+                            APIs. Strong proficiency in PHP, JavaScript, and database management required.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>UI/UX Designer</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Lahore, Pakistan
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            Design intuitive and engaging user interfaces for our web and mobile platforms. Must have a
+                            strong portfolio and experience with Figma/Sketch.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>Community Manager</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Islamabad, Pakistan
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            Engage and grow our user community, manage social media, and organize online/offline events.
+                            Excellent communication skills required.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>Digital Marketing Specialist</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Remote
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            Develop and execute digital marketing campaigns to increase user acquisition and engagement.
+                            Experience with SEO, SEM, and social media advertising.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>Customer Support Representative</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Karachi, Pakistan
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            Provide excellent support to our users, resolve inquiries, and ensure a positive experience.
+                            Strong problem-solving skills and empathy.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="job-opening-card">
+                        <h5>Data Analyst</h5>
+                        <div class="job-meta">
+                            <i class="fas fa-map-marker-alt"></i>Lahore, Pakistan
+                            <i class="fas fa-briefcase"></i>Full-time
+                        </div>
+                        <p>
+                            Analyze user behavior and marketplace trends to provide actionable insights for product and
+                            business development. Proficiency in SQL and data visualization tools.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="lead text-muted">Don't see a role that fits? Send us your resume!</p>
+                <a href="contact.html" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-file-alt me-2"></i>Submit Your Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-5" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-3 animate-text-glow">Ready to Make a Difference?</h2>
+                    <p class="text-white-50 mb-4">Join Swapify and help us build a more sustainable Pakistan!</p>
+                    <a href="profile.html" class="btn btn-light btn-lg animate-glow">
+                        <i class="fas fa-user-plus me-2"></i>Sign Up Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand animate-slide-up">
+                        <i class="fas fa-recycle text-primary"></i>
+                        <span class="ms-2">Swapify </span>
+                    </div>
+                    <p class="mt-3">Building Pakistan's sustainable future through circular economy and community-driven
+                        swapping.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Platform</h6>
+                    <ul class="footer-links">
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="rewards.html">Rewards</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="safety.html">Safety Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a class="active" href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="guidelines.html">Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright">&copy; 2025 Swapify . All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="made-with">Made with <i class="fas fa-heart text-danger animate-pulse"></i> in Pakistan
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Kit - Swapify </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .press-hero {
+            background-image: url('banner_2.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+        }
+
+        .press-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .press-hero .container {
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .press-hero .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        .press-hero .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .press-section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .press-section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--primary-color);
+        }
+
+        .press-section-card h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .press-section-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .press-section-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .press-section-card ul li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .press-section-card ul li i {
+            color: var(--primary-color);
+            margin-right: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">Swapify </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i
+                                class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All
+                                    Categories</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i
+                                        class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i
+                                        class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i
+                                        class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i
+                                class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i
+                                class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i
+                                class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i
+                                class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i
+                                class="fas fa-blog me-1"></i>Blog</a></li>
+                </ul>
+
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle custom-size" type="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My
+                                    Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i
+                                        class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                                        class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Press Kit Hero -->
+    <section class="press-hero hero-section">
+        <div class="container">
+            <h1 class="hero-title animate-text-glow">Press & Media Kit</h1>
+            <p class="hero-subtitle animate-fade-up">Resources for journalists, bloggers, and partners</p>
+        </div>
+    </section>
+
+    <!-- Press Content Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row stagger-animation">
+                <div class="col-lg-6 mb-4">
+                    <div class="press-section-card">
+                        <h4>About Swapify </h4>
+                        <p>
+                            Swapify is Pakistan's leading online platform for item swapping, dedicated to fostering a
+                            circular economy and promoting sustainable consumption. Founded in 2023, we empower
+                            individuals to exchange unused goods, reduce waste, and connect with a vibrant community.
+                        </p>
+                        <p>
+                            Our mission is to make sustainable living accessible and rewarding for everyone,
+                            contributing to a greener Pakistan.
+                        </p>
+                        <a href="about.html" class="btn btn-outline-primary btn-sm">Learn More About Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="press-section-card">
+                        <h4>Key Facts & Figures</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i>Launched: 2025</li>
+                            <li><i class="fas fa-check-circle"></i>Users: 50,000+ (and growing!)</li>
+                            <li><i class="fas fa-check-circle"></i>Items Swapped: 10,000+</li>
+                            <li><i class="fas fa-check-circle"></i>Eco Points Earned: 1,000,000+</li>
+                            <li><i class="fas fa-check-circle"></i>Available Categories: 12+</li>
+                        </ul>
+                        <p class="text-muted">Figures are approximate and updated periodically.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="press-section-card">
+                        <h4>Press Releases</h4>
+                        <ul>
+                            <li><i class="fas fa-file-alt"></i><a href="#" class="text-primary">Swapify Launches
+                                    Nationwide to Revolutionize Sustainable Consumption (July 1, 2025)</a></li>
+                            <li><i class="fas fa-file-alt"></i><a href="#" class="text-primary">Swapify Secures Seed
+                                    Funding to Expand Operations (June 15, 2025)</a></li>
+                            <li><i class="fas fa-file-alt"></i><a href="#" class="text-primary">New Partnership with
+                                    Eco-Friendly Brands Announced (May 20, 2025)</a></li>
+                        </ul>
+                        <p class="text-muted">For older releases or specific inquiries, please contact our media
+                            relations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="press-section-card">
+                        <h4>Media Assets</h4>
+                        <p>Download our official media kit, including logos, brand guidelines, and high-resolution
+                            images.</p>
+                        <ul>
+                            <li><i class="fas fa-download"></i><a href="#" class="text-primary">Download Swapify Logo
+                                    Pack (.zip)</a></li>
+                            <li><i class="fas fa-download"></i><a href="#" class="text-primary">Download Brand
+                                    Guidelines (.pdf)</a></li>
+                            <li><i class="fas fa-download"></i><a href="#" class="text-primary">Download High-Res
+                                    Product Shots (.zip)</a></li>
+                        </ul>
+                        <p class="text-muted">Please adhere to our brand guidelines when using our assets.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <h2 class="animate-text-glow">Media Contact</h2>
+                <p class="lead text-muted">For interviews, press inquiries, or partnership opportunities, please reach
+                    out:</p>
+                <p class="lead text-primary mb-0"><strong>media@Swapify.com</strong></p>
+                <p class="text-muted">+92 300 9876543</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-5" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-3 animate-text-glow">Want to Collaborate?</h2>
+                    <p class="text-white-50 mb-4">We're always open to meaningful partnerships that align with our
+                        mission.</p>
+                    <a href="contact.html" class="btn btn-light btn-lg animate-glow">
+                        <i class="fas fa-handshake me-2"></i>Partner With Us
+                    </a>
+                </div>
+            </div>
+        </div>
+        </footer>
+
+        <!-- Chat FAB -->
+        <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat">
+            <i class="fas fa-comments"></i>
+        </button>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+</body>
+
+</html>

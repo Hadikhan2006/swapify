@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details - SwapIt </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">SwapIt </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All Categories</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i class="fas fa-blog me-1"></i>Blog</a></li>
+                </ul>
+                
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+                    
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+                    
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Item Detail Hero -->
+    <section class="item-detail-hero hero-section" id="itemDetailHero">
+        <div class="container">
+            <h1 class="hero-title animate-text-glow" id="itemTitleHero">Loading Item...</h1>
+            <p class="hero-subtitle animate-fade-up" id="itemLocationHero"></p>
+        </div>
+    </section>
+
+    <!-- Item Details Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <!-- Image Gallery -->
+                    <div class="item-image-gallery mb-4 animate-scale-in">
+                        <div id="itemImageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner" id="carouselInner">
+                                <!-- Images will be loaded here -->
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#itemImageCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#itemImageCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            <div class="carousel-indicators" id="carouselIndicators">
+                                <!-- Indicators will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Info -->
+                    <div class="item-info-card mb-4 animate-slide-left">
+                        <h2 id="itemTitle"></h2>
+                        <div class="item-meta-details mb-3" id="itemMetaDetails">
+                            <!-- Meta details will be loaded here -->
+                        </div>
+                        <p class="item-description-full" id="itemDescription"></p>
+                        
+                        <h5 class="text-primary mb-3">What I'm Looking For:</h5>
+                        <p class="text-secondary" id="itemLookingFor">
+                            <!-- Looking for details will be loaded here -->
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-3 mt-4">
+                            <button class="btn btn-primary btn-lg animate-glow" data-bs-toggle="modal" data-bs-target="#swapProposalModal">
+                                <i class="fas fa-handshake me-2"></i>Propose a Swap
+                            </button>
+                            <button class="btn btn-outline-primary btn-lg" onclick="window.swapItApp.addToCart(currentItem.id, currentItem.title)">
+                                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                            </button>
+                            <button class="btn btn-outline-secondary btn-lg" onclick="window.shareItem()">
+                                <i class="fas fa-share-alt me-2"></i>Share Item
+                            </button>
+                            <button class="btn btn-outline-danger btn-lg" onclick="window.reportItem()">
+                                <i class="fas fa-flag me-2"></i>Report Item
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Seller Info -->
+                    <div class="seller-info-card mb-4 animate-slide-up">
+                        <div class="seller-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="seller-details">
+                            <h5 id="sellerName"></h5>
+                            <p class="text-muted" id="sellerLocation"></p>
+                            <div class="seller-rating">
+                                <i class="fas fa-star text-warning"></i>
+                                <span id="sellerRating"></span> (<span id="sellerSwaps"></span> swaps)
+                            </div>
+                        </div>
+                        <div class="ms-auto">
+                            <button class="btn btn-outline-primary" onclick="window.location.href='profile.html?user=sellerId'">
+                                <i class="fas fa-user-circle me-2"></i>View Profile
+                            </button>
+                            <button class="btn btn-primary ms-2" onclick="window.location.href='chat.html?user=sellerId'">
+                                <i class="fas fa-comments me-2"></i>Chat Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="reviews-section animate-slide-up">
+                        <h3 class="text-primary">User Reviews (<span id="reviewCount">0</span>)</h3>
+                        <div id="reviewsContainer">
+                            <!-- Reviews will be loaded here -->
+                        </div>
+                        
+                        <div class="add-review-card mt-4">
+                            <h5 class="mb-3 text-primary">Leave a Review</h5>
+                            <form id="reviewForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Your Rating</label>
+                                    <div class="rating-stars">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <input type="hidden" id="reviewRatingInput" value="0">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Your Comment</label>
+                                    <textarea class="form-control" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary animate-glow">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Related Items Section -->
+                    <div class="related-items-section animate-slide-right">
+                        <h3 class="text-primary mb-4">Related Items</h3>
+                        <div id="relatedItemsContainer" class="stagger-animation">
+                            <!-- Related items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Swap Proposal Modal -->
+    <div class="modal fade" id="swapProposalModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Propose a Swap for <span id="modalItemTitle"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="swapProposalForm">
+                        <div class="mb-3">
+                            <label class="form-label">Your Item for Swap</label>
+                            <select class="form-select" id="yourItemForSwap" required>
+                                <option value="">Select your item</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Your Proposal Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Describe why your item is a good swap..." required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">I agree to the <a href="terms.html" class="text-primary">Terms of Service</a></label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="swapProposalForm" class="btn btn-primary animate-glow">Send Proposal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h6 class="text-primary">About SwapIt </h6>
+                    <p>SwapIt  is a platform for swapping items with others in your community. Join us and start swapping!</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-primary">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="rewards.html">Rewards</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-primary">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-primary">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="press.html">Press Kit</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="text-primary">Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SwapIt . All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="marketplace.js"></script>
+    <script>
+        let currentItem = null; // Global variable to store the current item data
+
+        // Dummy data for items (should ideally come from a backend)
+        const allItems = [
+            {
+                id: 1,
+                title: "iPhone 14 Pro Max",
+                description: "Brand new condition, all accessories included. Perfect for photography enthusiasts. Comes with original box and charger. No scratches or dents. Battery health is 98%.",
+                lookingFor: "Looking to swap for a high-end gaming laptop (e.g., Razer Blade, Alienware) or a professional mirrorless camera (e.g., Sony Alpha, Fujifilm X-T series). Open to other interesting tech offers.",
+                location: "Karachi, Sindh",
+                time: "1 hour ago",
+                badge: "Hot Deal",
+                category: "electronics",
+                condition: "New",
+                rating: 4.9,
+                swaps: 156,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=iPhone 14 Pro Max - Main",
+                    "/placeholder.svg?height=400&width=600&text=iPhone 14 Pro Max - Angle 2",
+                    "/placeholder.svg?height=400&width=600&text=iPhone 14 Pro Max - Angle 3",
+                    "/placeholder.svg?height=400&width=600&text=iPhone 14 Pro Max - Box",
+                ],
+                seller: {
+                    name: "Ahmed Khan",
+                    location: "Karachi",
+                    rating: 4.8,
+                    swaps: 47,
+                },
+                reviews: [
+                    { user: "Ali S.", rating: 5, comment: "Great item, smooth swap!", date: "2 days ago" },
+                    { user: "Sara K.", rating: 4, comment: "Item as described, good communication.", date: "1 week ago" },
+                    { user: "Usman T.", rating: 5, comment: "Very professional seller, highly recommend!", date: "3 days ago" },
+                ],
+            },
+            {
+                id: 2,
+                title: "MacBook Pro M2",
+                description: "Excellent for developers and designers. Barely used, original packaging. 16GB RAM, 512GB SSD. No issues, runs perfectly.",
+                lookingFor: "Seeking a high-end DSLR camera (e.g., Canon, Nikon) or a powerful gaming console bundle (PS5, Xbox Series X with games).",
+                location: "Lahore, Punjab",
+                time: "3 hours ago",
+                badge: "Featured",
+                category: "electronics",
+                condition: "Like New",
+                rating: 4.8,
+                swaps: 89,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=MacBook Pro M2 - Main",
+                    "/placeholder.svg?height=400&width=600&text=MacBook Pro M2 - Angle 2",
+                ],
+                seller: {
+                    name: "Fatima Ali",
+                    location: "Lahore",
+                    rating: 4.9,
+                    swaps: 62,
+                },
+                reviews: [
+                    { user: "Usman T.", rating: 5, comment: "Fantastic laptop, very happy with the swap.", date: "3 days ago" },
+                ],
+            },
+            {
+                id: 3,
+                title: "Canon EOS R5",
+                description: "Professional camera with multiple lenses (24-70mm, 70-200mm). Perfect for content creators. Comes with extra battery and bag.",
+                lookingFor: "Interested in a high-end drone (e.g., DJI Mavic series) or a powerful desktop PC setup.",
+                location: "Islamabad, ICT",
+                time: "5 hours ago",
+                badge: "Premium",
+                category: "electronics",
+                condition: "Good",
+                rating: 5.0,
+                swaps: 234,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Canon EOS R5 - Main",
+                    "/placeholder.svg?height=400&width=600&text=Canon EOS R5 - Angle 2",
+                    "/placeholder.svg?height=400&width=600&text=Canon EOS R5 - Angle 3",
+                ],
+                seller: {
+                    name: "Hassan Raza",
+                    location: "Islamabad",
+                    rating: 5.0,
+                    swaps: 110,
+                },
+                reviews: [
+                    { user: "Ayesha B.", rating: 5, comment: "Amazing camera, seller was very helpful.", date: "1 day ago" },
+                ],
+            },
+            {
+                id: 4,
+                title: "Gaming Setup Complete",
+                description: "High-end gaming chair, desk, and accessories. Ready for pro gaming. Includes RGB lighting and ergonomic design.",
+                lookingFor: "Looking for a high-end smartphone (iPhone 15 Pro, Samsung S24 Ultra) or a professional graphics tablet.",
+                location: "Faisalabad, Punjab",
+                time: "1 day ago",
+                badge: "New",
+                category: "furniture",
+                condition: "Like New",
+                rating: 4.7,
+                swaps: 67,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Gaming Setup - Main",
+                    "/placeholder.svg?height=400&width=600&text=Gaming Setup - Angle 2",
+                ],
+                seller: {
+                    name: "Zainab M.",
+                    location: "Faisalabad",
+                    rating: 4.7,
+                    swaps: 35,
+                },
+                reviews: [],
+            },
+            {
+                id: 5,
+                title: "Medical Textbooks Set",
+                description: "Complete MBBS textbook collection. All latest editions included. Excellent for medical students.",
+                lookingFor: "Interested in a high-quality tablet (iPad Pro, Samsung Tab S series) or a good quality e-reader.",
+                location: "Karachi, Sindh",
+                time: "2 days ago",
+                badge: "Student Deal",
+                category: "books",
+                condition: "Good",
+                rating: 4.6,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Medical Books - Main",
+                    "/placeholder.svg?height=400&width=600&text=Medical Books - Angle 2",
+                ],
+                seller: {
+                    name: "Imran H.",
+                    location: "Karachi",
+                    rating: 4.6,
+                    swaps: 80,
+                },
+                reviews: [
+                    { user: "Sana A.", rating: 4, comment: "Books were in good condition, fair swap.", date: "5 days ago" },
+                ],
+            },
+            {
+                id: 6,
+                title: "Electric Bicycle",
+                description: "Eco-friendly transport solution. Long battery life, perfect condition. Ideal for daily commute or leisure rides.",
+                lookingFor: "Seeking a high-end smartphone or a compact mirrorless camera.",
+                location: "Lahore, Punjab",
+                time: "3 days ago",
+                badge: "Eco-Friendly",
+                category: "sports",
+                condition: "Like New",
+                rating: 4.8,
+                swaps: 45,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Electric Bicycle - Main",
+                    "/placeholder.svg?height=400&width=600&text=Electric Bicycle - Angle 2",
+                ],
+                seller: {
+                    name: "Nida R.",
+                    location: "Lahore",
+                    rating: 4.8,
+                    swaps: 20,
+                },
+                reviews: [],
+            },
+            {
+                id: 11,
+                title: "Vintage Leather Jacket",
+                description: "Classic design, well-preserved, perfect for fashion enthusiasts. Size L. Genuine leather, no major scuffs or tears. Inner lining is intact. A timeless piece for your wardrobe.",
+                lookingFor: "Looking for a high-quality drone, a professional camera lens, or a gaming console.",
+                location: "Karachi, Sindh",
+                time: "3 days ago",
+                badge: "Fashion",
+                category: "fashion",
+                condition: "Good",
+                rating: 4.5,
+                swaps: 20,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Vintage Jacket - Main",
+                    "/placeholder.svg?height=400&width=600&text=Vintage Jacket - Back",
+                    "/placeholder.svg?height=400&width=600&text=Vintage Jacket - Detail",
+                ],
+                seller: {
+                    name: "Zara Ahmed",
+                    location: "Karachi",
+                    rating: 4.5,
+                    swaps: 20,
+                },
+                reviews: [
+                    { user: "Imran K.", rating: 5, comment: "Jacket was exactly as described, very happy!", date: "2 days ago" },
+                ],
+            },
+            {
+                id: 12,
+                title: "Antique Wooden Chair",
+                description: "Hand-carved, unique piece, adds character to any room. Minor wear consistent with age. Solid wood construction, intricate detailing. A true collector's item.",
+                lookingFor: "Interested in vintage electronics, unique art pieces, or high-end kitchen appliances.",
+                location: "Lahore, Punjab",
+                time: "5 days ago",
+                badge: "Furniture",
+                category: "furniture",
+                condition: "Fair",
+                rating: 4.2,
+                swaps: 8,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Antique Chair - Main",
+                    "/placeholder.svg?height=400&width=600&text=Antique Chair - Side",
+                    "/placeholder.svg?height=400&width=600&text=Antique Chair - Detail",
+                ],
+                seller: {
+                    name: "Omer Farooq",
+                    location: "Lahore",
+                    rating: 4.2,
+                    swaps: 8,
+                },
+                reviews: [],
+            },
+            {
+                id: 13,
+                title: "Professional Drawing Tablet",
+                description: "Wacom Intuos Pro, medium size. Ideal for digital artists and graphic designers. Comes with pen and extra nibs. Pressure sensitivity is excellent.",
+                lookingFor: "Seeking a high-resolution monitor, a powerful desktop PC, or a professional audio interface.",
+                location: "Islamabad, ICT",
+                time: "1 week ago",
+                badge: "Art Tech",
+                category: "electronics",
+                condition: "Like New",
+                rating: 4.9,
+                swaps: 40,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Drawing Tablet - Main",
+                    "/placeholder.svg?height=400&width=600&text=Drawing Tablet - Box",
+                    "/placeholder.svg?height=400&width=600&text=Drawing Tablet - Pen",
+                ],
+                seller: {
+                    name: "Sana Malik",
+                    location: "Islamabad",
+                    rating: 4.9,
+                    swaps: 40,
+                },
+                reviews: [
+                    { user: "Ali R.", rating: 5, comment: "Perfect condition, works flawlessly. Great for my design work!", date: "3 days ago" },
+                ],
+            },
+            {
+                id: 14,
+                title: "Complete Fitness Dumbbell Set",
+                description: "Adjustable dumbbells from 5kg to 25kg. Perfect for home workouts. Includes stand. High-quality cast iron, durable and comfortable grip.",
+                lookingFor: "Looking for a high-end bicycle, a smart home device bundle, or a gaming console.",
+                location: "Faisalabad, Punjab",
+                time: "1 week ago",
+                badge: "Fitness",
+                category: "sports",
+                condition: "Good",
+                rating: 4.6,
+                swaps: 15,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Dumbbell Set - Main",
+                    "/placeholder.svg?height=400&width=600&text=Dumbbell Set - Weights",
+                ],
+                seller: {
+                    name: "Bilal Hassan",
+                    location: "Faisalabad",
+                    rating: 4.6,
+                    swaps: 15,
+                },
+                reviews: [],
+            },
+            {
+                id: 15,
+                title: "Rare Coin Collection",
+                description: "Collection of historical Pakistani coins, including rare commemorative issues. Over 50 unique coins. Comes with display case and authenticity certificates.",
+                lookingFor: "Interested in antique jewelry, vintage watches, or unique art pieces.",
+                location: "Karachi, Sindh",
+                time: "2 weeks ago",
+                badge: "Collectibles",
+                category: "art",
+                condition: "Good",
+                rating: 5.0,
+                swaps: 5,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Coin Collection - Main",
+                    "/placeholder.svg?height=400&width=600&text=Coin Collection - Close Up",
+                ],
+                seller: {
+                    name: "Javed Iqbal",
+                    location: "Karachi",
+                    rating: 5.0,
+                    swaps: 5,
+                },
+                reviews: [
+                    { user: "Farah N.", rating: 5, comment: "Absolutely stunning collection, very rare finds!", date: "1 week ago" },
+                ],
+            },
+            {
+                id: 16,
+                title: "High-End Coffee Machine",
+                description: "Espresso machine with milk frother. Barely used, perfect for coffee lovers. Makes lattes, cappuccinos, and more. Easy to clean.",
+                lookingFor: "Seeking a high-quality blender, a stand mixer, or other kitchen gadgets.",
+                location: "Lahore, Punjab",
+                time: "2 weeks ago",
+                badge: "Home Goods",
+                category: "home-garden",
+                condition: "Like New",
+                rating: 4.7,
+                swaps: 10,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Coffee Machine - Main",
+                    "/placeholder.svg?height=400&width=600&text=Coffee Machine - Side",
+                ],
+                seller: {
+                    name: "Ayesha Siddiqui",
+                    location: "Lahore",
+                    rating: 4.7,
+                    swaps: 10,
+                },
+                reviews: [],
+            },
+            {
+                id: 17,
+                title: "Kids' Electric Ride-On Car",
+                description: "Miniature electric car for children, with remote control. Fun for ages 3-6. Features working lights and music. Rechargeable battery.",
+                lookingFor: "Looking for a kids' bicycle, educational toys, or a play kitchen set.",
+                location: "Islamabad, ICT",
+                time: "3 weeks ago",
+                badge: "Kids",
+                category: "toys",
+                condition: "Good",
+                rating: 4.4,
+                swaps: 7,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Kids Car - Main",
+                    "/placeholder.svg?height=400&width=600&text=Kids Car - Remote",
+                ],
+                seller: {
+                    name: "Usman Tariq",
+                    location: "Islamabad",
+                    rating: 4.4,
+                    swaps: 7,
+                },
+                reviews: [],
+            },
+            {
+                id: 18,
+                title: "Vintage Record Player",
+                description: "Fully functional turntable with built-in speakers. Enjoy classic vinyl. Retro design, great sound quality. Perfect for music enthusiasts.",
+                lookingFor: "Seeking a high-quality sound system, vintage audio equipment, or musical instruments.",
+                location: "Rawalpindi, Punjab",
+                time: "1 month ago",
+                badge: "Music",
+                category: "music",
+                condition: "Used - Good",
+                rating: 4.3,
+                swaps: 3,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Record Player - Main",
+                    "/placeholder.svg?height=400&width=600&text=Record Player - Close Up",
+                ],
+                seller: {
+                    name: "Nida Khan",
+                    location: "Rawalpindi",
+                    rating: 4.3,
+                    swaps: 3,
+                },
+                reviews: [],
+            },
+            {
+                id: 19,
+                title: "Smartwatch (Fitness Tracker)",
+                description: "Tracks heart rate, steps, sleep. Compatible with Android and iOS. Long battery life, waterproof. Comes with original box and charger.",
+                lookingFor: "Looking for a gaming console, a tablet, or a high-end smartphone.",
+                location: "Karachi, Sindh",
+                time: "1 day ago",
+                badge: "Wearable",
+                category: "electronics",
+                condition: "New",
+                rating: 4.8,
+                swaps: 25,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Smartwatch - Main",
+                    "/placeholder.svg?height=400&width=600&text=Smartwatch - Screen",
+                ],
+                seller: {
+                    name: "Fahad Ali",
+                    location: "Karachi",
+                    rating: 4.8,
+                    swaps: 25,
+                },
+                reviews: [
+                    { user: "Zainab H.", rating: 5, comment: "Excellent smartwatch, very accurate tracking!", date: "1 day ago" },
+                ],
+            },
+            {
+                id: 20,
+                title: "Gardening Tool Set",
+                description: "Complete set of durable gardening tools, including shovel, rake, and pruners. High-quality stainless steel. Perfect for beginners and experienced gardeners.",
+                lookingFor: "Seeking outdoor furniture, home decor items, or small appliances.",
+                location: "Lahore, Punjab",
+                time: "4 days ago",
+                badge: "Garden",
+                category: "home-garden",
+                condition: "Like New",
+                rating: 4.5,
+                swaps: 12,
+                images: [
+                    "/placeholder.svg?height=800&width=1200&text=Gardening Tools - Main",
+                    "/placeholder.svg?height=400&width=600&text=Gardening Tools - Close Up",
+                ],
+                seller: {
+                    name: "Saima Pervez",
+                    location: "Lahore",
+                    rating: 4.5,
+                    swaps: 12,
+                },
+                reviews: [],
+            }
+        ];
+
+        // Dummy user items for swap proposal modal
+        const userItems = [
+            { id: 101, title: "My Old Smartphone", category: "Electronics" },
+            { id: 102, title: "Vintage Watch", category: "Fashion" },
+            { id: 103, title: "Fiction Novel Set", category: "Books" },
+            { id: 104, title: "Gaming Headset", category: "Electronics" },
+        ];
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function renderItemDetails(item) {
+            currentItem = item; // Store item globally
+
+            // Hero Section
+            document.getElementById('itemTitleHero').textContent = item.title;
+            document.getElementById('itemLocationHero').textContent = item.location;
+            document.getElementById('itemDetailHero').style.backgroundImage = `url('${item.images[0]}')`;
+
+            // Image Gallery
+            const carouselInner = document.getElementById('carouselInner');
+            const carouselIndicators = document.getElementById('carouselIndicators');
+            carouselInner.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+
+            item.images.forEach((imgSrc, index) => {
+                const activeClass = index === 0 ? 'active' : '';
+                carouselInner.innerHTML += `
+                    <div class="carousel-item ${activeClass}">
+                        <img src="${imgSrc}" class="d-block w-100 item-image-main" alt="${item.title} Image ${index + 1}">
+                    </div>
+                `;
+                carouselIndicators.innerHTML += `
+                    <button type="button" data-bs-target="#itemImageCarousel" data-bs-slide-to="${index}" class="${activeClass}" aria-current="${activeClass ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>
+                `;
+            });
+
+            // Item Info
+            document.getElementById('itemTitle').textContent = item.title;
+            document.getElementById('itemDescription').textContent = item.description;
+            document.getElementById('itemLookingFor').textContent = item.lookingFor;
+
+            const itemMetaDetails = document.getElementById('itemMetaDetails');
+            itemMetaDetails.innerHTML = `
+                <span class="meta-badge"><i class="fas fa-tags me-1"></i>${item.category}</span>
+                <span class="meta-badge"><i class="fas fa-star me-1"></i>${item.condition}</span>
+                <span class="meta-badge"><i class="fas fa-map-marker-alt me-1"></i>${item.location}</span>
+                <span class="meta-badge"><i class="fas fa-clock me-1"></i>${item.time}</span>
+                <span class="meta-badge"><i class="fas fa-exchange-alt me-1"></i>${item.swaps} Swaps</span>
+                <span class="meta-badge"><i class="fas fa-fire me-1"></i>${item.badge}</span>
+            `;
+
+            // Seller Info
+            document.getElementById('sellerName').textContent = item.seller.name;
+            document.getElementById('sellerLocation').textContent = item.seller.location;
+            document.getElementById('sellerRating').textContent = item.seller.rating;
+            document.getElementById('sellerSwaps').textContent = item.seller.swaps;
+
+            // Reviews
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            const reviewCount = document.getElementById('reviewCount');
+            reviewsContainer.innerHTML = '';
+            if (item.reviews && item.reviews.length > 0) {
+                reviewCount.textContent = item.reviews.length;
+                item.reviews.forEach(review => {
+                    reviewsContainer.innerHTML += `
+                        <div class="review-item enhanced-card animate-slide-up">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h6>${review.user}</h6>
+                                    <div class="review-rating">
+                                        ${'<i class="fas fa-star"></i>'.repeat(review.rating)}
+                                        ${'<i class="far fa-star"></i>'.repeat(5 - review.rating)}
+                                    </div>
+                                </div>
+                                <div class="review-date">${review.date}</div>
+                            </div>
+                            <p class="review-text">${review.comment}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                reviewCount.textContent = '0';
+                reviewsContainer.innerHTML = `
+                    <div class="text-center text-muted p-5 enhanced-card">
+                        <i class="fas fa-exclamation-circle fa-4x mb-3"></i>
+                        <h5>No reviews yet for this item.</h5>
+                        <p>Be the first to leave a review!</p>
+                    </div>
+                `;
+            }
+
+            // Populate Swap Proposal Modal
+            document.getElementById('modalItemTitle').textContent = item.title;
+            const yourItemForSwapSelect = document.getElementById('yourItemForSwap');
+            yourItemForSwapSelect.innerHTML = '<option value="">Select your item</option>';
+            userItems.forEach(userItem => {
+                yourItemForSwapSelect.innerHTML += `<option value="${userItem.id}">${userItem.title} (${userItem.category})</option>`;
+            });
+
+            // Render Related Items
+            renderRelatedItems(item.category, item.id);
+        }
+
+        function renderRelatedItems(category, currentItemId) {
+            const relatedItemsContainer = document.getElementById('relatedItemsContainer');
+            relatedItemsContainer.innerHTML = '';
+
+            const filteredRelated = allItems.filter(item => item.category === category && item.id !== currentItemId)
+                                            .sort(() => 0.5 - Math.random()) // Shuffle
+                                            .slice(0, 3); // Get up to 3 related items
+
+            if (filteredRelated.length > 0) {
+                filteredRelated.forEach(item => {
+                    relatedItemsContainer.innerHTML += `
+                        <div class="item-card-featured enhanced-card animate-scale-in" onclick="window.viewItem(${item.id})">
+                            <div class="item-image-container">
+                                <div class="item-image holographic" style="background-image: url('${item.images[0]}'); background-size: cover; background-position: center;"></div>
+                            </div>
+                            <div class="item-content">
+                                <h5 class="item-title">${item.title}</h5>
+                                <p class="item-description">${item.description}</p>
+                                <div class="item-meta mb-2">
+                                    <div class="item-location">
+                                        <i class="fas fa-map-marker-alt me-1"></i>
+                                        ${item.location}
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn btn-primary flex-fill animate-glow">
+                                        <i class="fas fa-eye me-1"></i>View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                relatedItemsContainer.innerHTML = `
+                    <div class="text-center text-muted p-4 enhanced-card">
+                        <i class="fas fa-box-open fa-3x mb-2"></i>
+                        <p>No related items found.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const itemId = getUrlParameter('id');
+            const item = allItems.find(i => i.id === parseInt(itemId));
+
+            if (item) {
+                renderItemDetails(item);
+            } else {
+                document.getElementById('itemTitleHero').textContent = 'Item Not Found';
+                document.getElementById('itemLocationHero').textContent = 'Please check the item ID.';
+                document.getElementById('itemDetailHero').style.backgroundImage = 'none';
+                document.getElementById('itemDetailHero').style.backgroundColor = 'var(--bg-secondary)';
+                document.getElementById('itemImageCarousel').innerHTML = `
+                    <div class="text-center text-muted p-5 enhanced-card">
+                        <i class="fas fa-exclamation-circle fa-4x mb-3"></i>
+                        <h5>Item details could not be loaded.</h5>
+                        <p>The item you are looking for might not exist or has been removed.</p>
+                        <a href="marketplace.html" class="btn btn-primary mt-3">Back to Marketplace</a>
+                    </div>
+                `;
+                document.getElementById('itemInfo').innerHTML = ''; // Clear other sections
+                document.getElementById('sellerInfo').innerHTML = '';
+                document.getElementById('reviewsSection').innerHTML = '';
+                document.getElementById('relatedItemsSection').innerHTML = '';
+            }
+
+            // Review form rating stars
+            document.querySelectorAll('.rating-stars .far.fa-star').forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.dataset.rating);
+                    document.getElementById('reviewRatingInput').value = rating;
+                    document.querySelectorAll('.rating-stars .far.fa-star').forEach((s, i) => {
+                        if (i < rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas');
+                            s.classList.add('text-warning');
+                        } else {
+                            s.classList.remove('fas');
+                            s.classList.remove('text-warning');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+            });
+
+            // Review form submission
+            document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const rating = document.getElementById('reviewRatingInput').value;
+                const comment = this.querySelector('textarea').value;
+
+                if (rating > 0 && comment.length > 0) {
+                    window.swapItApp.showToast('Review submitted successfully!', 'success');
+                    this.reset();
+                    document.getElementById('reviewRatingInput').value = '0';
+                    document.querySelectorAll('.rating-stars .fas.fa-star').forEach(s => {
+                        s.classList.remove('fas', 'text-warning');
+                        s.classList.add('far');
+                    });
+                    // In a real app, you'd send this to a backend and then re-render reviews
+                } else {
+                    window.swapItApp.showToast('Please provide a rating and a comment.', 'error');
+                }
+            });
+
+            // Swap Proposal Form Submission
+            document.getElementById('swapProposalForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const yourItem = document.getElementById('yourItemForSwap').value;
+                const proposalMessage = this.querySelector('textarea').value;
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+
+                if (yourItem && proposalMessage && agreeTerms) {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+
+                    submitBtn.innerHTML = '<span class="loading-spinner me-2"></span> Sending...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        window.swapItApp.showToast('Swap proposal sent successfully!', 'success');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        this.reset();
+                        document.getElementById('agreeTerms').checked = false;
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('swapProposalModal'));
+                        if (modal) modal.hide();
+                    }, 2000);
+                } else {
+                    window.swapItApp.showToast('Please fill all required fields and agree to terms.', 'error');
+                }
+            });
+        });
+
+        // Global functions for item interactions
+        window.shareItem = () => {
+            if (currentItem) {
+                const shareData = {
+                    title: currentItem.title,
+                    text: `Check out this item on SwapIt : ${currentItem.title} - ${currentItem.description}`,
+                    url: window.location.href,
+                };
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .then(() => window.swapItApp.showToast('Item shared successfully!', 'success'))
+                        .catch((error) => window.swapItApp.showToast('Error sharing item: ' + error.message, 'error'));
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    navigator.clipboard.writeText(shareData.url)
+                        .then(() => window.swapItApp.showToast('Item link copied to clipboard!', 'info'))
+                        .catch(() => window.swapItApp.showToast('Could not copy link to clipboard.', 'error'));
+                }
+            }
+        };
+
+        window.reportItem = () => {
+            if (currentItem) {
+                if (confirm(`Are you sure you want to report "${currentItem.title}"? This action cannot be undone.`)) {
+                    window.swapItApp.showToast(`Item "${currentItem.title}" reported. We will investigate.`, 'warning');
+                    // In a real app, send report to backend
+                }
+            }
+        };
+    </script>
+</body>
+</html>

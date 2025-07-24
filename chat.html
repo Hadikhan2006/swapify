@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Swapify </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .chat-container {
+            height: calc(100vh - 80px);
+            /* Adjust for fixed navbar height */
+            display: flex;
+            background: var(--bg-primary);
+            margin-top: 80px;
+            /* Push content below navbar */
+        }
+
+        .chat-sidebar {
+            width: 350px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            /* Prevent shrinking */
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-primary);
+        }
+
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-card);
+            flex-shrink: 0;
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+
+        .chat-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chat-item:hover,
+        .chat-item.active {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .chat-item.unread::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            background: var(--primary-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg-primary);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 0.75rem 1rem;
+            border-radius: 18px;
+            position: relative;
+        }
+
+        .message.received .message-bubble {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .message.sent .message-bubble {
+            background: var(--primary-color);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+            color: var(--text-muted) !important;
+            /* Ensure time text is visible */
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+            flex-shrink: 0;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 2px;
+            margin-left: 0.5rem;
+        }
+
+        .typing-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .swap-proposal {
+            background: var(--bg-card);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .proposal-items {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .proposal-item {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .proposal-arrow {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .chat-welcome {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: var(--text-secondary);
+        }
+
+        .user-status {
+            color: var(--text-muted) !important;
+        }
+
+        .user-status.online {
+            color: var(--success-color) !important;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .user-avatar i {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                height: calc(100vh - 80px);
+                margin-top: 80px;
+            }
+
+            .chat-sidebar {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .chat-sidebar.show {
+                transform: translateX(0);
+            }
+
+            .chat-main {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate-brand" href="index.html">
+                <i class="fas fa-recycle brand-icon"></i>
+                <span class="brand-text">Swapify </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="marketplace.html"><i
+                                class="fas fa-store me-1"></i>Marketplace</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="categories.html"><i class="fas fa-list me-2"></i>All
+                                    Categories</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=electronics"><i
+                                        class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=books"><i
+                                        class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="marketplace.html?category=fashion"><i
+                                        class="fas fa-tshirt me-2"></i>Fashion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="community.html"><i
+                                class="fas fa-users me-1"></i>Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rewards.html"><i
+                                class="fas fa-trophy me-1"></i>Rewards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i
+                                class="fas fa-info-circle me-1"></i>About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i
+                                class="fas fa-envelope me-1"></i>Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i
+                                class="fas fa-blog me-1"></i>Blog</a></li>
+                </ul>
+
+                <div class="navbar-nav ms-auto align-items-center">
+                    <button class="theme-toggle me-3" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="notifications.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">3</span>
+                    </a>
+
+                    <a href="cart.html" class="btn btn-outline-primary me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="notification-badge" id="cartCount">0</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle custom-size" type="button"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Account
+                        </button>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>My
+                                    Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i
+                                        class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i
+                                        class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <!-- Chat Sidebar -->
+        <div class="chat-sidebar" id="chatSidebar">
+            <div class="chat-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-primary">
+                        <i class="fas fa-comments me-2"></i>
+                        Messages
+                    </h5>
+                    <button class="btn btn-sm btn-outline-primary d-md-none" onclick="toggleSidebar()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="input-group mt-2">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search conversations..."
+                        id="searchChats">
+                    <button class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-list" id="chatList">
+                <!-- Chat items will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Chat Main -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-outline-primary btn-sm me-3 d-md-none" onclick="toggleSidebar()">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="user-avatar me-3">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0" id="chatUserName">Select a conversation</h6>
+                            <small class="user-status" id="chatUserStatus">Click on a chat to start messaging</small>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="btn btn-outline-primary btn-sm me-2" disabled>
+                            <i class="fas fa-phone"></i>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" disabled>
+                            <i class="fas fa-video"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-welcome">
+                    <i class="fas fa-comments fa-3x mb-3"></i>
+                    <h5>Welcome to Swapify Chat</h5>
+                    <p>Select a conversation to start messaging</p>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                <span>User is typing</span>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button" disabled>
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="text" class="form-control" id="messageInput" placeholder="Type your message..."
+                        disabled>
+                    <button class="btn btn-primary" id="sendButton" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat FAB (hidden on chat page) -->
+    <button class="chat-fab" onclick="window.location.href='chat.html'" title="Open Chat" style="display: none;">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Chat functionality
+        class ChatManager {
+            constructor() {
+                this.conversations = []
+                this.currentChat = null
+                this.messages = {}
+                this.init()
+            }
+
+            init() {
+                this.generateConversations()
+                this.renderChatList()
+                this.setupEventListeners()
+            }
+
+            generateConversations() {
+                this.conversations = [
+                    {
+                        id: 1,
+                        user: 'Sarah Ahmed',
+                        lastMessage: 'Is the iPhone still available?',
+                        time: '2 min ago',
+                        unread: true,
+                        online: true,
+                        item: 'iPhone 13 Pro'
+                    },
+                    {
+                        id: 2,
+                        user: 'Ali Hassan',
+                        lastMessage: 'Great! When can we meet?',
+                        time: '1 hour ago',
+                        unread: false,
+                        online: false,
+                        item: 'MacBook Air'
+                    },
+                    {
+                        id: 3,
+                        user: 'Fatima Khan',
+                        lastMessage: 'Thanks for the quick response!',
+                        time: '3 hours ago',
+                        unread: true,
+                        online: true,
+                        item: 'University Books'
+                    },
+                    {
+                        id: 4,
+                        user: 'Hassan Ali',
+                        lastMessage: 'Can we swap tomorrow?',
+                        time: '1 day ago',
+                        unread: false,
+                        online: false,
+                        item: 'Gaming Chair'
+                    }
+                ]
+
+                // Generate messages for each conversation
+                this.messages = {
+                    1: [
+                        { id: 1, text: 'Hi! I saw your iPhone listing', sent: false, time: '10:30 AM' },
+                        { id: 2, text: 'Hello! Yes, it\'s still available', sent: true, time: '10:32 AM' },
+                        { id: 3, text: 'What condition is it in?', sent: false, time: '10:33 AM' },
+                        { id: 4, text: 'It\'s in excellent condition, barely used', sent: true, time: '10:35 AM' },
+                        { id: 5, text: 'Is the iPhone still available?', sent: false, time: '10:38 AM' }
+                    ],
+                    2: [
+                        { id: 1, text: 'Interested in your MacBook', sent: false, time: '9:15 AM' },
+                        { id: 2, text: 'What would you like to swap for it?', sent: true, time: '9:20 AM' },
+                        { id: 3, text: 'I have a gaming laptop', sent: false, time: '9:25 AM' },
+                        { id: 4, text: 'That sounds interesting! Can you send specs?', sent: true, time: '9:27 AM' },
+                        { id: 5, text: 'RTX 3070, 16GB RAM, i7 processor', sent: false, time: '9:28 AM' },
+                        { id: 6, text: 'Great! When can we meet?', sent: false, time: '9:30 AM' }
+                    ],
+                    3: [
+                        { id: 1, text: 'Are these textbooks for engineering?', sent: false, time: '8:00 AM' },
+                        { id: 2, text: 'Yes, 3rd semester engineering books', sent: true, time: '8:05 AM' },
+                        { id: 3, text: 'Perfect! I need exactly these', sent: false, time: '8:10 AM' },
+                        { id: 4, text: 'What do you have to offer?', sent: true, time: '8:12 AM' },
+                        { id: 5, text: 'I have 4th semester books', sent: false, time: '8:13 AM' },
+                        { id: 6, text: 'Thanks for the quick response!', sent: false, time: '8:15 AM' }
+                    ],
+                    4: [
+                        { id: 1, text: 'Hi, interested in the gaming chair', sent: false, time: '7:00 AM' },
+                        { id: 2, text: 'Hello! It\'s still available', sent: true, time: '7:05 AM' },
+                        { id: 3, text: 'What are you looking for in exchange?', sent: false, time: '7:10 AM' },
+                        { id: 4, text: 'Maybe a study table?', sent: true, time: '7:15 AM' },
+                        { id: 5, text: 'I have one! Can we swap tomorrow?', sent: false, time: '7:20 AM' }
+                    ]
+                }
+            }
+
+            renderChatList() {
+                const chatList = document.getElementById('chatList')
+
+                const chatsHTML = this.conversations.map(chat => `
+                    <div class="chat-item ${chat.unread ? 'unread' : ''}" data-chat-id="${chat.id}">
+                        <div class="d-flex align-items-center">
+                            <div class="user-avatar me-3 position-relative">
+                                <i class="fas fa-user-circle"></i>
+                                ${chat.online ? '<div class="position-absolute bottom-0 end-0 bg-success rounded-circle" style="width: 12px; height: 12px; border: 2px solid var(--bg-card);"></div>' : ''}
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-1" style="color: var(--text-primary);">${chat.user}</h6>
+                                    <small style="color: var(--text-secondary);">${chat.time}</small>
+                                </div>
+                                <p class="mb-1 small" style="color: var(--text-secondary);">${chat.lastMessage}</p>
+                                <small class="text-primary">
+                                    <i class="fas fa-box me-1"></i>
+                                    ${chat.item}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')
+
+                chatList.innerHTML = chatsHTML
+            }
+
+            setupEventListeners() {
+                // Chat item clicks
+                document.addEventListener('click', (e) => {
+                    const chatItem = e.target.closest('.chat-item')
+                    if (chatItem) {
+                        this.selectChat(parseInt(chatItem.dataset.chatId))
+                    }
+                })
+
+                // Send message
+                document.getElementById('sendButton').addEventListener('click', () => {
+                    this.sendMessage()
+                })
+
+                document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage()
+                    }
+                })
+
+                // Typing indicator
+                let typingTimeout
+                document.getElementById('messageInput').addEventListener('input', () => {
+                    this.showTypingIndicator()
+                    clearTimeout(typingTimeout)
+                    typingTimeout = setTimeout(() => {
+                        this.hideTypingIndicator()
+                    }, 2000)
+                })
+
+                // Search functionality
+                document.getElementById('searchChats').addEventListener('input', (e) => {
+                    this.filterChats(e.target.value)
+                })
+            }
+
+            selectChat(chatId) {
+                this.currentChat = chatId
+                const chat = this.conversations.find(c => c.id === chatId)
+
+                // Update chat header
+                document.getElementById('chatUserName').textContent = chat.user
+                document.getElementById('chatUserStatus').textContent = chat.online ? 'Online' : 'Last seen recently'
+                document.getElementById('chatUserStatus').className = `user-status ${chat.online ? 'online' : ''}`
+
+                // Enable input and buttons
+                document.getElementById('messageInput').disabled = false
+                document.getElementById('sendButton').disabled = false
+                document.querySelectorAll('.chat-actions button').forEach(btn => btn.disabled = false)
+
+                // Mark as read
+                chat.unread = false
+
+                // Update active state
+                document.querySelectorAll('.chat-item').forEach(item => {
+                    item.classList.remove('active')
+                })
+                document.querySelector(`[data-chat-id="${chatId}"]`).classList.add('active')
+
+                // Render messages
+                this.renderMessages(chatId)
+                this.renderChatList()
+
+                // Hide sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    document.getElementById('chatSidebar').classList.remove('show')
+                }
+            }
+
+            renderMessages(chatId) {
+                const messagesContainer = document.getElementById('chatMessages')
+                const messages = this.messages[chatId] || []
+
+                const messagesHTML = messages.map(message => `
+                    <div class="message ${message.sent ? 'sent' : 'received'}">
+                        <div class="message-bubble">
+                            <div class="message-text">${message.text}</div>
+                            <div class="message-time">${message.time}</div>
+                        </div>
+                    </div>
+                `).join('')
+
+                messagesContainer.innerHTML = messagesHTML
+                messagesContainer.scrollTop = messagesContainer.scrollHeight
+            }
+
+            sendMessage() {
+                const input = document.getElementById('messageInput')
+                const text = input.value.trim()
+
+                if (!text || !this.currentChat) return
+
+                const message = {
+                    id: Date.now(),
+                    text: text,
+                    sent: true,
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }
+
+                if (!this.messages[this.currentChat]) {
+                    this.messages[this.currentChat] = []
+                }
+
+                this.messages[this.currentChat].push(message)
+
+                // Update conversation
+                const conversation = this.conversations.find(c => c.id === this.currentChat)
+                conversation.lastMessage = text
+                conversation.time = 'now'
+
+                input.value = ''
+                this.renderMessages(this.currentChat)
+                this.renderChatList()
+
+                // Simulate response
+                setTimeout(() => {
+                    this.simulateResponse()
+                }, Math.random() * 2000 + 1000)
+            }
+
+            simulateResponse() {
+                const responses = [
+                    'That sounds great!',
+                    'Let me check and get back to you',
+                    'When would be a good time to meet?',
+                    'I\'m interested in this swap',
+                    'Can you send more details?',
+                    'Perfect! Let\'s arrange the swap',
+                    'Is it still available?',
+                    'What condition is it in?'
+                ]
+
+                const response = {
+                    id: Date.now(),
+                    text: responses[Math.floor(Math.random() * responses.length)],
+                    sent: false,
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }
+
+                this.messages[this.currentChat].push(response)
+
+                const conversation = this.conversations.find(c => c.id === this.currentChat)
+                conversation.lastMessage = response.text
+                conversation.time = 'now'
+                conversation.unread = true
+
+                this.renderMessages(this.currentChat)
+                this.renderChatList()
+
+                // Show notification
+                window.SwapifyApp.showToast(`New message from ${conversation.user}`, 'info', 3000)
+            }
+
+            showTypingIndicator() {
+                const indicator = document.getElementById('typingIndicator')
+                indicator.style.display = 'flex' // Use flex to show
+            }
+
+            hideTypingIndicator() {
+                const indicator = document.getElementById('typingIndicator')
+                indicator.style.display = 'none'
+            }
+
+            filterChats(searchText) {
+                const filteredConversations = this.conversations.filter(chat => {
+                    return chat.user.toLowerCase().includes(searchText.toLowerCase()) ||
+                        chat.item.toLowerCase().includes(searchText.toLowerCase())
+                })
+
+                const chatList = document.getElementById('chatList')
+                const chatsHTML = filteredConversations.map(chat => `
+                    <div class="chat-item ${chat.unread ? 'unread' : ''}" data-chat-id="${chat.id}">
+                        <div class="d-flex align-items-center">
+                            <div class="user-avatar me-3 position-relative">
+                                <i class="fas fa-user-circle"></i>
+                                ${chat.online ? '<div class="position-absolute bottom-0 end-0 bg-success rounded-circle" style="width: 12px; height: 12px; border: 2px solid var(--bg-card);"></div>' : ''}
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-1" style="color: var(--text-primary);">${chat.user}</h6>
+                                    <small style="color: var(--text-secondary);">${chat.time}</small>
+                                </div>
+                                <p class="mb-1 small" style="color: var(--text-secondary);">${chat.lastMessage}</p>
+                                <small class="text-primary">
+                                    <i class="fas fa-box me-1"></i>
+                                    ${chat.item}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')
+
+                chatList.innerHTML = chatsHTML || '<p class="text-center text-muted p-3">No chats found</p>'
+            }
+        }
+
+        // Helper function to toggle sidebar
+        function toggleSidebar() {
+            document.getElementById('chatSidebar').classList.toggle('show')
+        }
+
+        // Initialize chat
+        document.addEventListener('DOMContentLoaded', () => {
+            new ChatManager()
+        })
+    </script>
+</body>
+
+</html>
